@@ -21,6 +21,8 @@ const MyNavbar2 = () => {
     }
   };
 
+  //non ho fatto in tempo
+
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary"

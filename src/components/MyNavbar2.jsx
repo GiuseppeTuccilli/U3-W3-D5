@@ -2,33 +2,40 @@ import { Form, Button } from "react-bootstrap";
 import apple from "../../assets/logos/apple-white.svg";
 import music from "../../assets/logos/music-white.svg";
 import { useSelector } from "react-redux";
+
 import { useRef } from "react";
 
 const MyNavbar2 = () => {
   const audio = useSelector((state) => {
-    return state.audio;
+    return state.audio.audio;
   });
-  const audioRef = useRef(null);
 
-  const toggleAudio = () => {
-    const player = audioRef.current;
-    if (!player) return;
+  const song = new Audio(audio);
 
-    if (player.paused) {
-      player.play();
+  const playBtn = useRef();
+  const pauseBtn = useRef();
+  const vol = useRef();
+
+  song.volume = 0.5;
+
+  const playPause = function () {
+    if (song.paused) {
+      song.play();
+      playBtn.current.classList.add("d-none");
+      pauseBtn.current.classList.remove("d-none");
     } else {
-      player.pause();
+      song.pause();
+      playBtn.current.classList.remove("d-none");
+      pauseBtn.current.classList.add("d-none");
     }
+    console.log("cliccato");
   };
-
-  //non ho fatto in tempo
 
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary"
       data-bs-theme="dark"
     >
-      <audio id="audioPlayer" src={audio} type="audio/mp3"></audio>
       <div className="container-fluid">
         <button
           className="navbar-toggler text-danger"
@@ -71,8 +78,14 @@ const MyNavbar2 = () => {
             <Button>
               <i className="bi bi-skip-backward-fill"></i>
             </Button>
-            <Button className="fs-1" onClick={toggleAudio}>
-              <i className="bi bi-play-fill d-flex"></i>
+            <Button
+              className="fs-1"
+              onClick={() => {
+                playPause();
+              }}
+            >
+              <i className="bi bi-play-fill d-flex" ref={playBtn}></i>
+              <i className="bi bi-pause-fill d-flex d-none" ref={pauseBtn}></i>
             </Button>
             <Button>
               <i className="bi bi-fast-forward-fill"></i>
@@ -89,7 +102,14 @@ const MyNavbar2 = () => {
             <img src={apple} />
           </div>
           <div id="range" className="d-none d-lg-flex align-items-center">
-            <Form.Range id="vol" style={{ width: "6em" }} />
+            <Form.Range
+              id="vol"
+              style={{ width: "6em" }}
+              ref={vol}
+              onChange={(e) => {
+                song.volume = e.target.value / 100;
+              }}
+            />
           </div>
           <div className="d-none d-lg-flex align-items-center">
             <Button variant="danger">

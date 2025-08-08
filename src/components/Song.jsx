@@ -9,6 +9,10 @@ const Song = () => {
     return state.nuove;
   });
 
+  const audio = useSelector((state) => {
+    return state.audio.audio;
+  });
+
   useEffect(() => {
     dispatch((dispatch, getState) => {
       fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=queen")
@@ -25,6 +29,7 @@ const Song = () => {
             type: "GET_NUOVE",
             payload: data.data,
           });
+          console.log(audio);
         })
         .catch((er) => {
           console.log(er);
@@ -42,6 +47,7 @@ const Song = () => {
             <Card className="bg-grigio">
               <Card.Img
                 onClick={() => {
+                  console.log(song.preview);
                   dispatch({
                     type: "GET_AUDIO",
                     payload: song.preview,

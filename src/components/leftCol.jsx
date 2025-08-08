@@ -22,7 +22,7 @@ const LeftCol = () => {
             id="cerca"
             type="search"
             placeholder="cerca"
-            className="me-2 my-4  bg-neroChiaro"
+            className="me-2 my-4  bg-neroChiaro text-white"
             aria-label="Search"
             style={{ height: "1.8em", borderLeft: "0" }}
           />

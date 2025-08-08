@@ -1,0 +1,120 @@
+@import "../../scss/functions";
+@import "../../scss/variables";
+
+$new-theme-colors: (
+  "nero": #1f1f1f,
+  "neroChiaro": #252526,
+  "grigio": #2c2c2c,
+  "grigioChiaro": #626262,
+);
+
+#cerca::placeholder {
+  color: red;
+}
+
+.side-btn {
+  color: white;
+  border-radius: 3px;
+  span {
+    color: $danger;
+  }
+}
+.side-btn:hover {
+  cursor: pointer;
+  background-color: #4d4d4d;
+}
+
+#search-btn {
+  height: 1.8em;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 9px 0px 0px 9px;
+  border-right: 0;
+}
+#cerca {
+  border-radius: 0px 9px 9px 0px;
+}
+
+#player {
+  button {
+    background: none;
+    border: none;
+    color: #626262;
+  }
+}
+
+#centralLogo {
+  padding-left: 10em;
+  padding-right: 10em;
+  height: 70%;
+  background-color: #626262;
+}
+
+#vol {
+  //-webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: transparent;
+}
+
+/* barra */
+#vol::-webkit-slider-runnable-track {
+  background: #626262;
+  height: 6px;
+  border-radius: 3px;
+}
+
+#vol::-moz-range-track {
+  background: #626262;
+  height: 6px;
+  border-radius: 3px;
+}
+
+/* pallina */
+#vol::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: white;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+#vol::-moz-range-thumb {
+  background: white;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#accMob {
+  background-color: transparent;
+  border: none;
+}
+
+.big-car img {
+  cursor: pointer;
+  transition: 0.1s linear;
+}
+
+.big-car img:hover {
+  transform: scale(1.03);
+}
+
+.carousel button {
+  display: none;
+}
+
+#midCar .big-car div {
+  height: 15em;
+}
+
+.card img {
+  cursor: pointer;
+  transition: 0.1s linear;
+}
+$theme-colors: map-merge($theme-colors, $new-theme-colors);
+
+@import "../../scss/bootstrap.scss";

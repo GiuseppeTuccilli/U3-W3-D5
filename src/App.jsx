@@ -11,6 +11,7 @@ import NuoveUscite from "./components/NuoveUscite";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Under from "./components/Under";
+import MyFooter from "./components/MyFooter";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Middle />
             <NuoveUscite />
             <Under />
+            <MyFooter />
           </Col>
         </Row>
       </Provider>

@@ -1,35 +1,32 @@
 import { Form, Button } from "react-bootstrap";
 import apple from "../../assets/logos/apple-white.svg";
 import music from "../../assets/logos/music-white.svg";
+import { useSelector } from "react-redux";
+import { useRef } from "react";
 
 const MyNavbar2 = () => {
-  /*  const playBtn = document.getElementById("playButton");
-const audio = document.getElementById("audioPlayer");
-let isPlay = false;
-const range = document.getElementById("customRange1");
+  const audio = useSelector((state) => {
+    return state.audio;
+  });
+  const audioRef = useRef(null);
 
-playBtn.addEventListener("click", () => {
-  if (isPlay === false) {
-    audio.play();
-    isPlay = true;
-  } else {
-    audio.pause();
-    isPlay = false;
-  }
-});
+  const toggleAudio = () => {
+    const player = audioRef.current;
+    if (!player) return;
 
-let seconds = audio.currentTime;
+    if (player.paused) {
+      player.play();
+    } else {
+      player.pause();
+    }
+  };
 
-audio.addEventListener("loadedmetadata", () => {
-  let end = audio.duration;
-  console.log(audio.duration);
-  range.value = (seconds / audio.duration) * 100;
-}); */
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary"
       data-bs-theme="dark"
     >
+      <audio id="audioPlayer" src={audio} type="audio/mp3"></audio>
       <div className="container-fluid">
         <button
           className="navbar-toggler text-danger"
@@ -72,7 +69,7 @@ audio.addEventListener("loadedmetadata", () => {
             <Button>
               <i className="bi bi-skip-backward-fill"></i>
             </Button>
-            <Button className="fs-1">
+            <Button className="fs-1" onClick={toggleAudio}>
               <i className="bi bi-play-fill d-flex"></i>
             </Button>
             <Button>

@@ -10,7 +10,7 @@ const Under = () => {
             <Button className="w-100 d-flex justify-content-between align-items-center">
               <p className="text-danger m-0 fw-bold">Esplora per Genere</p>
               <p className="text-danger fs-2 m-0">
-                <i class="bi bi-caret-right"></i>
+                <i className="bi bi-caret-right"></i>
               </p>
             </Button>
           </Col>
@@ -18,7 +18,7 @@ const Under = () => {
             <Button className="w-100 d-flex justify-content-between align-items-center">
               <p className="text-danger m-0 fw-bold">Worldwide</p>
               <p className="text-danger fs-2 m-0">
-                <i class="bi bi-caret-right"></i>
+                <i className="bi bi-caret-right"></i>
               </p>
             </Button>
           </Col>
@@ -26,7 +26,7 @@ const Under = () => {
             <Button className="w-100 d-flex justify-content-between align-items-center">
               <p className="text-danger m-0 fw-bold">Video musicali</p>
               <p className="text-danger fs-2 m-0">
-                <i class="bi bi-caret-right"></i>
+                <i className="bi bi-caret-right"></i>
               </p>
             </Button>
           </Col>
@@ -34,7 +34,7 @@ const Under = () => {
             <Button className="w-100 d-flex justify-content-between align-items-center">
               <p className="text-danger m-0 fw-bold">Decenni</p>
               <p className="text-danger fs-2 m-0">
-                <i class="bi bi-caret-right"></i>
+                <i className="bi bi-caret-right"></i>
               </p>
             </Button>
           </Col>
@@ -42,7 +42,7 @@ const Under = () => {
             <Button className="w-100 d-flex justify-content-between align-items-center">
               <p className="text-danger m-0 fw-bold">Classifiche</p>
               <p className="text-danger fs-2 m-0">
-                <i class="bi bi-caret-right"></i>
+                <i className="bi bi-caret-right"></i>
               </p>
             </Button>
           </Col>
@@ -50,7 +50,7 @@ const Under = () => {
             <Button className="w-100 d-flex justify-content-between align-items-center">
               <p className="text-danger m-0 fw-bold">Nuovi Artisti</p>
               <p className="text-danger fs-2 m-0">
-                <i class="bi bi-caret-right"></i>
+                <i className="bi bi-caret-right"></i>
               </p>
             </Button>
           </Col>
@@ -60,7 +60,7 @@ const Under = () => {
                 Attività e stati d'animo
               </p>
               <p className="text-danger fs-2 m-0">
-                <i class="bi bi-caret-right"></i>
+                <i className="bi bi-caret-right"></i>
               </p>
             </Button>
           </Col>
@@ -68,7 +68,7 @@ const Under = () => {
             <Button className="w-100 d-flex justify-content-between align-items-center">
               <p className="text-danger m-0 fw-bold">Audio spaziale</p>
               <p className="text-danger fs-2 m-0">
-                <i class="bi bi-caret-right"></i>
+                <i className="bi bi-caret-right"></i>
               </p>
             </Button>
           </Col>
@@ -76,7 +76,7 @@ const Under = () => {
             <Button className="w-100 d-flex justify-content-between align-items-center">
               <p className="text-danger m-0 fw-bold">Hit del passato</p>
               <p className="text-danger fs-2 m-0">
-                <i class="bi bi-caret-right"></i>
+                <i className="bi bi-caret-right"></i>
               </p>
             </Button>
           </Col>

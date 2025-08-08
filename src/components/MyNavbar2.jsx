@@ -3,6 +3,28 @@ import apple from "../../assets/logos/apple-white.svg";
 import music from "../../assets/logos/music-white.svg";
 
 const MyNavbar2 = () => {
+  /*  const playBtn = document.getElementById("playButton");
+const audio = document.getElementById("audioPlayer");
+let isPlay = false;
+const range = document.getElementById("customRange1");
+
+playBtn.addEventListener("click", () => {
+  if (isPlay === false) {
+    audio.play();
+    isPlay = true;
+  } else {
+    audio.pause();
+    isPlay = false;
+  }
+});
+
+let seconds = audio.currentTime;
+
+audio.addEventListener("loadedmetadata", () => {
+  let end = audio.duration;
+  console.log(audio.duration);
+  range.value = (seconds / audio.duration) * 100;
+}); */
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary"

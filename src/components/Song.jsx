@@ -41,6 +41,12 @@ const Song = () => {
           <Col xs={4} lg={3} key={song.id}>
             <Card className="bg-grigio">
               <Card.Img
+                onClick={() => {
+                  dispatch({
+                    type: "GET_AUDIO",
+                    payload: song.preview,
+                  });
+                }}
                 variant="top"
                 src={song.album.cover_big}
                 style={{ borderRadius: "3px" }}

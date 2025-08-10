@@ -4,7 +4,7 @@ import audioReducer from "../audioReducer";
 
 const Reducer = combineReducers({
   nuove: nuoveReducer,
-  audio: audioReducer,
+  audioA: audioReducer,
 });
 
 const store = configureStore({

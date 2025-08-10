@@ -1,34 +1,78 @@
 import { Form, Button } from "react-bootstrap";
 import apple from "../../assets/logos/apple-white.svg";
 import music from "../../assets/logos/music-white.svg";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 
 const MyNavbar2 = () => {
   const audio = useSelector((state) => {
-    return state.audio.audio;
+    return state.audioA.audio;
   });
 
-  const song = new Audio(audio);
+  const isPlaying = useSelector((state) => {
+    return state.audioA.isplaying;
+  });
+
+  const [isFirstRender, setIsFirsoRender] = useState(true);
+
+  let audioRef = useRef();
+
+  const dispatch = useDispatch();
 
   const playBtn = useRef();
   const pauseBtn = useRef();
   const vol = useRef();
 
-  song.volume = 0.5;
+  useEffect(() => {
+    if (isFirstRender) {
+      setIsFirsoRender(false);
+      return;
+    }
+    if (isPlaying) {
+      audioRef.current.play();
+      audioRef.volume = vol.current.value;
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    if (isFirstRender) {
+      setIsFirsoRender(false);
+
+      return;
+    }
+
+    if (isPlaying) {
+      audioRef.current.play();
+      audioRef.volume = vol.current.value;
+    } else {
+      dispatch({
+        type: "IS_PLAYING",
+      });
+
+      audioRef.current.play();
+      audioRef.volume = vol.current.value;
+    }
+  }, [audio]);
 
   const playPause = function () {
-    if (song.paused) {
-      song.play();
-      playBtn.current.classList.add("d-none");
-      pauseBtn.current.classList.remove("d-none");
-    } else {
-      song.pause();
-      playBtn.current.classList.remove("d-none");
-      pauseBtn.current.classList.add("d-none");
+    if (audio === "") {
+      return;
     }
-    console.log("cliccato");
+    if (!isPlaying) {
+      dispatch({
+        type: "IS_PLAYING",
+      });
+      console.log(audio);
+    } else {
+      dispatch({
+        type: "NOT_PLAYING",
+      });
+    }
+
+    console.log(isPlaying);
   };
 
   return (
@@ -78,14 +122,18 @@ const MyNavbar2 = () => {
             <Button>
               <i className="bi bi-skip-backward-fill"></i>
             </Button>
+            <audio src={audio !== "" ? audio : null} ref={audioRef}></audio>
             <Button
               className="fs-1"
               onClick={() => {
                 playPause();
               }}
             >
-              <i className="bi bi-play-fill d-flex" ref={playBtn}></i>
-              <i className="bi bi-pause-fill d-flex d-none" ref={pauseBtn}></i>
+              {!isPlaying ? (
+                <i className={"bi  d-flex bi-play-fill"} ref={playBtn}></i>
+              ) : (
+                <i className="bi bi-pause-fill d-flex " ref={pauseBtn}></i>
+              )}
             </Button>
             <Button>
               <i className="bi bi-fast-forward-fill"></i>
@@ -107,7 +155,7 @@ const MyNavbar2 = () => {
               style={{ width: "6em" }}
               ref={vol}
               onChange={(e) => {
-                song.volume = e.target.value / 100;
+                audioRef.current.volume = e.target.value / 100;
               }}
             />
           </div>

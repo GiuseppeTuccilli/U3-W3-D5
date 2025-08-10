@@ -10,7 +10,7 @@ const Song = () => {
   });
 
   const audio = useSelector((state) => {
-    return state.audio.audio;
+    return state.audioA.audio;
   });
 
   useEffect(() => {

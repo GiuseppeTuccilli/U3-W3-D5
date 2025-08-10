@@ -1,5 +1,8 @@
+import { isPlain } from "@reduxjs/toolkit";
+
 const initialState = {
   audio: "",
+  isplaying: false,
 };
 
 const audioReducer = (state = initialState, action) => {
@@ -8,6 +11,18 @@ const audioReducer = (state = initialState, action) => {
       return {
         ...state,
         audio: action.payload,
+      };
+
+    case "NOT_PLAYING":
+      return {
+        ...state,
+        isplaying: false,
+      };
+
+    case "IS_PLAYING":
+      return {
+        ...state,
+        isplaying: true,
       };
 
     default:

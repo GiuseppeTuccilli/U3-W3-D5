@@ -15,7 +15,9 @@ const Song = () => {
 
   useEffect(() => {
     dispatch((dispatch, getState) => {
-      fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=queen")
+      fetch(
+        "https://striveschool-api.herokuapp.com/api/deezer/search?q=queensryche"
+      )
         .then((res) => {
           if (res.ok) {
             return res.json();

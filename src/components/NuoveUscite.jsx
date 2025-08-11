@@ -5,7 +5,7 @@ const NuoveUscite = () => {
   return (
     <Container>
       <h3 className="text-white">Nuove Uscite </h3>
-      <Row className="g-1">
+      <Row className="g-2">
         <Song />
       </Row>
     </Container>

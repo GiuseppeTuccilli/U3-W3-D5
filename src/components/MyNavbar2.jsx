@@ -77,7 +77,7 @@ const MyNavbar2 = () => {
 
   return (
     <nav
-      className="navbar navbar-expand-lg bg-body-tertiary"
+      className="navbar navbar-expand-lg bg-body-tertiary position-fixed z-2"
       data-bs-theme="dark"
     >
       <div className="container-fluid">

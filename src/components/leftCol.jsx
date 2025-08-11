@@ -4,10 +4,7 @@ import { Form, Button } from "react-bootstrap";
 const LeftCol = () => {
   return (
     <>
-      <div
-        className="bg-neroChiaro w-100 "
-        style={{ height: "100%", borderRight: "1px solid gray" }}
-      >
+      <div id="leftCol" className="bg-neroChiaro  ">
         <img src={musicIcon} className="mt-4 ms-4" />
 
         <Form className="d-flex position-relative mx-1">

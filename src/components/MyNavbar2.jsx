@@ -96,26 +96,8 @@ const MyNavbar2 = () => {
         <Button id="accMob" className="d-flex d-lg-none text-danger fw-bold">
           Accedi
         </Button>
-        <div
-          className="collapse navbar-collapse justify-content-evenly"
-          id="navbarSupportedContent"
-        >
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-lg-none ">
-            {/*<li className="nav-item d-lg-none">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-            </li>*/}
-          </ul>
-
-          <div
-            className="bg-grigio d-none d-flex align-items-center justify-content-evenly"
-            style={{ height: "4em" }}
-          ></div>
-          <div
-            id="player"
-            className="d-none d-lg-flex  h-100 align-content-center"
-          >
+        <div id="player" className="d-lg-flex  h-100 align-content-center">
+          <div id="insidePlayer">
             <Button>
               <i className="bi bi-shuffle"></i>
             </Button>
@@ -142,6 +124,50 @@ const MyNavbar2 = () => {
               <i className="bi bi-repeat"></i>
             </Button>
           </div>
+        </div>
+        <div
+          className="collapse navbar-collapse justify-content-evenly"
+          id="navbarSupportedContent"
+        >
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-lg-none ">
+            {/*<li className="nav-item d-lg-none">
+              <a className="nav-link active" aria-current="page" href="#">
+                Home
+              </a>
+            </li>*/}
+          </ul>
+
+          <div
+            className="bg-grigio d-none d-flex align-items-center justify-content-evenly"
+            style={{ height: "4em" }}
+          ></div>
+          {/*<div id="player" className="d-lg-flex  h-100 align-content-center">
+            <Button>
+              <i className="bi bi-shuffle"></i>
+            </Button>
+            <Button>
+              <i className="bi bi-skip-backward-fill"></i>
+            </Button>
+            <audio src={audio !== "" ? audio : null} ref={audioRef}></audio>
+            <Button
+              className="fs-1"
+              onClick={() => {
+                playPause();
+              }}
+            >
+              {!isPlaying ? (
+                <i className={"bi  d-flex bi-play-fill"} ref={playBtn}></i>
+              ) : (
+                <i className="bi bi-pause-fill d-flex " ref={pauseBtn}></i>
+              )}
+            </Button>
+            <Button>
+              <i className="bi bi-fast-forward-fill"></i>
+            </Button>
+            <Button>
+              <i className="bi bi-repeat"></i>
+            </Button>
+          </div>*/}
           <div
             id="centralLogo"
             className="d-none d-lg-flex align-items-center"

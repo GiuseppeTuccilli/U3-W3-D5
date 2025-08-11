@@ -8,6 +8,7 @@ const MyFooter = () => {
         Copyright 2024 <span className="text-white">Apple Inc.</span> Tutti i
         diritti riservati
       </p>
+      <div id="bottomSpace"></div>
     </Container>
   );
 };

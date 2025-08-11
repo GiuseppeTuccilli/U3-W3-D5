@@ -1,5 +1,6 @@
 const initialState = {
   nuove: [],
+  search: "",
 };
 
 const nuoveReducer = (state = initialState, action) => {
@@ -8,6 +9,11 @@ const nuoveReducer = (state = initialState, action) => {
       return {
         ...state,
         nuove: action.payload,
+      };
+    case "GET_SEARCH":
+      return {
+        ...state,
+        search: action.payload,
       };
 
     default:

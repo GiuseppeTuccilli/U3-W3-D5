@@ -4,6 +4,7 @@ import music from "../../assets/logos/music-white.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+import { NULL } from "sass";
 
 const MyNavbar2 = () => {
   const audio = useSelector((state) => {
@@ -12,6 +13,10 @@ const MyNavbar2 = () => {
 
   const isPlaying = useSelector((state) => {
     return state.audioA.isplaying;
+  });
+
+  const songsArray = useSelector((state) => {
+    return state.nuove.nuove;
   });
 
   const [isFirstRender, setIsFirsoRender] = useState(true);
@@ -75,6 +80,62 @@ const MyNavbar2 = () => {
     console.log(isPlaying);
   };
 
+  const forward = function () {
+    if (audio === "") {
+      return;
+    }
+
+    let j = null;
+    for (let i = 0; i < songsArray.length; i++) {
+      if (songsArray[i].preview === audio) {
+        j = i;
+      }
+    }
+
+    if (j === null) {
+      return;
+    }
+    if (j === songsArray.length - 1) {
+      dispatch({
+        type: "GET_AUDIO",
+        payload: songsArray[0].preview,
+      });
+    } else {
+      dispatch({
+        type: "GET_AUDIO",
+        payload: songsArray[j + 1].preview,
+      });
+    }
+  };
+
+  const backward = function () {
+    if (audio === "") {
+      return;
+    }
+
+    let j = null;
+    for (let i = 0; i < songsArray.length; i++) {
+      if (songsArray[i].preview === audio) {
+        j = i;
+      }
+    }
+    if (j === null) {
+      return;
+    }
+
+    if (j === 0) {
+      dispatch({
+        type: "GET_AUDIO",
+        payload: songsArray[songsArray.length - 1].preview,
+      });
+    } else {
+      dispatch({
+        type: "GET_AUDIO",
+        payload: songsArray[j - 1].preview,
+      });
+    }
+  };
+
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary position-fixed z-2"
@@ -101,7 +162,11 @@ const MyNavbar2 = () => {
             <Button>
               <i className="bi bi-shuffle"></i>
             </Button>
-            <Button>
+            <Button
+              onClick={() => {
+                backward();
+              }}
+            >
               <i className="bi bi-skip-backward-fill"></i>
             </Button>
             <audio src={audio !== "" ? audio : null} ref={audioRef}></audio>
@@ -117,7 +182,11 @@ const MyNavbar2 = () => {
                 <i className="bi bi-pause-fill d-flex " ref={pauseBtn}></i>
               )}
             </Button>
-            <Button>
+            <Button
+              onClick={() => {
+                forward();
+              }}
+            >
               <i className="bi bi-fast-forward-fill"></i>
             </Button>
             <Button>

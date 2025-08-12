@@ -1,10 +1,9 @@
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, ProgressBar } from "react-bootstrap";
 import apple from "../../assets/logos/apple-white.svg";
 import music from "../../assets/logos/music-white.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-import { NULL } from "sass";
 
 const MyNavbar2 = () => {
   const audio = useSelector((state) => {
@@ -20,6 +19,8 @@ const MyNavbar2 = () => {
   });
 
   const [isFirstRender, setIsFirsoRender] = useState(true);
+  const [currentTime, setCurentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   let audioRef = useRef();
 
@@ -28,6 +29,7 @@ const MyNavbar2 = () => {
   const playBtn = useRef();
   const pauseBtn = useRef();
   const vol = useRef();
+  const seekRef = useRef();
 
   useEffect(() => {
     if (isFirstRender) {
@@ -49,6 +51,20 @@ const MyNavbar2 = () => {
       return;
     }
 
+    const handleMetaData = () => {
+      seekRef.current.min = 0;
+      seekRef.current.max = audioRef.current.duration;
+      setDuration(audioRef.current.duration);
+    };
+
+    const handleTimeUpdate = () => {
+      setCurentTime(audioRef.current.currentTime);
+    };
+
+    audioRef.current.addEventListener("loadedmetadata", handleMetaData);
+
+    audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+
     if (isPlaying) {
       audioRef.current.play();
       audioRef.volume = vol.current.value;
@@ -60,6 +76,11 @@ const MyNavbar2 = () => {
       audioRef.current.play();
       audioRef.volume = vol.current.value;
     }
+
+    return () => {
+      audioRef.current.removeEventListener("loadedmetadata", handleMetaData);
+      audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+    };
   }, [audio]);
 
   const playPause = function () {
@@ -157,7 +178,10 @@ const MyNavbar2 = () => {
         <Button id="accMob" className="d-flex d-lg-none text-danger fw-bold">
           Accedi
         </Button>
-        <div id="player" className="d-lg-flex  h-100 align-content-center">
+        <div
+          id="player"
+          className="d-lg-flex flex-column h-100 align-content-center"
+        >
           <div id="insidePlayer">
             <Button>
               <i className="bi bi-shuffle"></i>
@@ -193,7 +217,20 @@ const MyNavbar2 = () => {
               <i className="bi bi-repeat"></i>
             </Button>
           </div>
+          <Form.Range
+            id="seek"
+            className="vol w-100"
+            ref={seekRef}
+            value={currentTime}
+            onChange={(e) => {
+              setCurentTime(parseFloat(e.target.value));
+              if (audioRef.current) {
+                audioRef.current.currentTime = parseFloat(e.target.value);
+              }
+            }}
+          />
         </div>
+
         <div
           className="collapse navbar-collapse justify-content-evenly"
           id="navbarSupportedContent"
@@ -247,6 +284,7 @@ const MyNavbar2 = () => {
           <div id="range" className="d-none d-lg-flex align-items-center">
             <Form.Range
               id="vol"
+              className="vol"
               style={{ width: "6em" }}
               ref={vol}
               onChange={(e) => {
